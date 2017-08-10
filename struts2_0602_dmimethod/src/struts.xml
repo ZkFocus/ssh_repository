@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- <constant name="struts.devMode" value="true" /> -->
+	<!-- 配置文件配置方式 还可以写一个properties -->
+	<!-- 全局信息在default.properties -->
+	<!-- <constant name="struts.enable.DynamicMethodInvocation" value="true" /> -->
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="user" class="com.struts2.action.demo.DMIAction">
+			<result name="add">/add.jsp</result>
+			<result name="del">/del.jsp</result>
+		</action>
+		<!-- 
+			wild* *对应映射method的属性， 如wildadd wilddel，则调用action类的add del方法  
+			method="{1}"代表第一个*，如果有多个*，则根据顺序来通配  
+		-->
+		<action name="wild*" class="com.struts2.action.demo.WildCardAction" method="{1}">
+			<result>/wild{1}.jsp</result>
+		</action>
+	</package>
+</struts>
