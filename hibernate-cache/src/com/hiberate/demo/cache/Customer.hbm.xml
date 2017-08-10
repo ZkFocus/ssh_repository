@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-27 13:26:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.hiberate.demo.cache.Customer" table="CUSTOMER_" batch-size="5">
+    <cache usage="read-write"/>
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="email" type="string">
+        	<column name="EMAIL"></column>
+        </property>
+        <!-- inverse=true 将维护关系交给N 那一方  cascade 来设置级联操作 -->
+        <set name="orders" table="ORDER_" inverse="true" cascade="delete" >
+        <cache usage="read-write"/>
+        	<key>
+        		<column name="C_ID"></column>
+        	</key>
+        	<one-to-many class="com.hiberate.demo.cache.Order"/>
+        </set>
+    </class>
+</hibernate-mapping>

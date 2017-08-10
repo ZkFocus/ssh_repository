@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    	<!-- 配置数据库的基本信息-->
+    		<!-- 连接数据库的基本信息 -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.url">jdbc:mysql:///hibernate_cache</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+        
+        <!-- 格式化SQL，展现SQL以及生成表策略 -->
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        
+        <!-- 配置启用二级缓存 -->
+    	<property name="cache.use_second_level_cache">true</property>
+    	<!-- 配置二级缓存的提供者 -->
+    	<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+    	
+    	<!-- 开启查询缓存 -->
+    	<property name="cache.use_query_cache">true</property>
+    	
+    	<!-- 开启缓存统计功能 -->
+    	<property name="hibernate.generate_statistics">true</property>
+    	<mapping resource="com/hiberate/demo/cache/Customer.hbm.xml"/>
+    	<mapping resource="com/hiberate/demo/cache/Order.hbm.xml"/>
+    	
+    	<!--  <class-cache usage="read-write" class="com.hiberate.demo.cache.Order"/> 
+    	<class-cache usage="read-write" class="com.hiberate.demo.cache.Customer"/>
+    	<collection-cache usage="read-write" collection="com.hiberate.demo.cache.Customer.orders"/> -->
+    	
+    </session-factory>
+</hibernate-configuration>
