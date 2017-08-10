@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	  <constant name="struts.devMode" value="true" />
+	  <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<package name="default" namespace="/" extends="struts-default">
+		<!-- <action name="user*" class="com.struts2.demo.ParameterAction" method="{1}">
+        	<result>/user{1}.jsp</result>
+        </action> -->
+         <action name="user" class="com.struts2.demo.ParameterAction" >
+        	<result>/useradd.jsp</result>
+        </action>
+        
+        <!-- 使用域模型接收参数 -->
+		<action name="user*" class="com.struts2.demo.Parameter_DomainModel" method="{1}">
+			<result>/user{1}.jsp</result>
+		</action>    
+		
+		<!-- 使用modeldriven拦截器接收参数 -->
+		<action name="user*" class="com.struts2.demo.Parameter_ModelDriven" method="{1}">
+			<result>/user{1}.jsp</result>
+		</action>   
+	</package>
+</struts>
