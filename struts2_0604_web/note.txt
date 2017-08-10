@@ -1,0 +1,30 @@
+1,为什么需要web资源？
+	Action如果对Servlet Http的请求(HttpServletRequest),响应(HttpServletResponse)操作，
+	就需要我们在action中获取request等web资源了
+  什么是web资源？
+  	就是JSP/SERVLET 中那些HttpServletRequest、HttpServletResponse等的统称
+2,获取web资源的四种方式
+	API操作如下：
+	1),通过ServletActionContext.getRequest() 获取HttpServletRequest
+	2),public class WebAction2 implements RequestAware {
+			private ServletRequest request;
+			@Override
+			public void setRequest(Map<String, Object> map) {
+				request = (ServletRequest) map.get(StrutsStatics.HTTP_REQUEST);
+			}
+		}
+	3),	通过ActionContext获取
+		ActionContext ac = ActionContext.getContext();
+		ServletRequest request = (ServletRequest) ac.get(ServletActionContext.HTTP_REQUEST);
+	4),实现ServletRequestAware等接口
+	public class WebAction4 implements ServletRequestAware, ServletResponseAware, ServletContextAware {
+		private ServletRequest request;
+		private ServletResponse response;
+		private ServletContext context;
+
+		@Override
+		public void setServletRequest(HttpServletRequest httpServletRequest) {
+			request = httpServletRequest;
+		}
+	}	
+3，获取web资源 就是在struts2中用到jsp/servlet的对象	
