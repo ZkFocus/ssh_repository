@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-24 13:14:35 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping package="com.hibernate.demo.two">
+    <class name="User" table="C_USER">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="tel" type="java.lang.String">
+            <column name="TEL" />
+        </property>
+        <property name="birth" type="java.sql.Date">
+            <column name="BIRTH" />
+        </property>
+		<component name="address" class="Address">
+		<parent name="User"/>
+			<property name="street" column="street" type="string"></property>
+			<property name="city" column="city" type="string"></property>
+			<property name="province" column="province" type="string"></property>
+		</component>       		
+    </class>
+</hibernate-mapping>

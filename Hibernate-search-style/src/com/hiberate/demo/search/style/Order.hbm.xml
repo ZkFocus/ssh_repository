@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-27 13:26:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping package="com.hiberate.demo.search.style" >
+    <class name="Order" table="ORDER_">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="orderNo" type="java.lang.String">
+            <column name="ORDERNO" />
+        </property>
+        <property name="price" type="float">
+        	<column name="PRICE"></column>
+        </property>
+        <!-- name用于指定Order类中对Customer的引用的属性 -->
+        <many-to-one name="customer" class="Customer" lazy="proxy" >
+            <column name="C_ID" />
+        </many-to-one>
+    </class>
+    <query name="priceSelect"><![CDATA[From Order o where o.price >:minPrice and o.price <:maxPrice ]]></query>
+</hibernate-mapping>

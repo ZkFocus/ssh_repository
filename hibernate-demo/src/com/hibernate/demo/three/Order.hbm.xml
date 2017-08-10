@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 15:28:20 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.hibernate.demo.three.Order" table="ORDER_">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="orderNo" type="java.lang.String">
+            <column name="ORDERNO" />
+        </property>
+        <!--在N端定义的 1端对象的属性名字 -->
+        <many-to-one name="customer"  class="com.hibernate.demo.three.Customer">
+            <column name="C_ID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

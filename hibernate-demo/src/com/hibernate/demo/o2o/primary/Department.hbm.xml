@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 18:32:27 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.hibernate.demo.o2o.primary.Department" table="DEPARTMENT">
+        <id name="deptId" type="java.lang.Integer">
+            <column name="DEPT_ID" />
+            <generator class="foreign">
+            	<param name="property">manager</param>
+            </generator>
+        </id>
+        <property name="deptName" type="java.lang.String">
+            <column name="DEPT_NAME" />
+        </property>
+        
+        <one-to-one name="manager" class="com.hibernate.demo.o2o.primary.Manager" constrained="true"> </one-to-one>
+        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	
+    <session-factory>
+    	<!-- 连接数据库的基本信息 -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">root</property>
+        <property name="hibernate.connection.url">jdbc:mysql:///sampledb</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL55Dialect</property>
+        
+        <!-- 格式化SQL，展现SQL以及生成表策略 -->
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        
+        <property name="hibernate.connection.isolation">2</property>
+        <property name="hibernate.use_identifier_rollback">true</property>
+        
+            <!-- 配置启用二级缓存 -->    
+       <property name="cache.use_second_level_cache">true</property>
+       <!-- 配置二级缓存的提供者 -->
+       <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+       
+         <!-- 配置启用查询缓存 -->
+       <property name="cache.use_query_cache">true</property>
+       
+       <property name="hibernate.generate_statistics">true</property>
+        
+      <!-- --> <mapping resource="com/hibernate/demo/threeboth/Customer.hbm.xml"/>
+       <mapping resource="com/hibernate/demo/threeboth/Order.hbm.xml"/> 
+       
+       <!-- <mapping resource="com/hibernate/demo/one/User.hbm.xml"/> -->
+       <!--   <mapping resource="com/hibernate/demo/two/User.hbm.xml"/>
+        <mapping resource="com/hibernate/demo/hql/Customer.hbm.xml"/>
+        <mapping resource="com/hibernate/demo/hql/Order.hbm.xml"/> 
+        -->
+     <!--     
+     <mapping resource="com/hibernate/demo/o2o/foreign/Department.hbm.xml"/>
+        <mapping resource="com/hibernate/demo/o2o/foreign/Manager.hbm.xml"/> 
+        -->
+      <!--     <mapping resource="com/hibernate/demo/n2n/both/Category.hbm.xml"/> 
+            <mapping resource="com/hibernate/demo/n2n/both/Item.hbm.xml"/>  -->
+    
+       <!-- 配置哪些类使用二级缓存 -->
+      <!--  <class-cache usage="read-write" class="com.hibernate.demo.hql.Order"/>      
+       <class-cache usage="read-write" class="com.hibernate.demo.hql.Customer"/>
+       <collection-cache usage="read-write" collection="com.hibernate.demo.hql.Customer.orders"/> -->
+       
+     
+       
+    </session-factory>
+</hibernate-configuration>

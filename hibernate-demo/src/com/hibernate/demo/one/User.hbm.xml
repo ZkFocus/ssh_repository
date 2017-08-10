@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-22 12:21:07 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.hibernate.demo.one.User" table="USER_increment" select-before-update="true" dynamic-update="true">
+        <id name="id" type="int" >
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="tel" type="java.lang.String">
+            <column name="TEL" />
+        </property>
+        <property name="birth" type="java.sql.Date">
+            <column name="BIRTH" />
+        </property>
+    </class>
+</hibernate-mapping>

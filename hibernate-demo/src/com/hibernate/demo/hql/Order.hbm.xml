@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 17:15:00 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+	<class name="com.hibernate.demo.hql.Order" table="ORDER_">
+		 <!-- <cache usage="read-write"/>  -->
+		<id name="id" type="java.lang.Integer">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<property name="orderNo" type="java.lang.String">
+			<column name="ORDERNO" />
+		</property>
+		<property name="price" type="float">
+			<column name="PRICE"></column>
+		</property>
+		<many-to-one name="customer" class="com.hibernate.demo.hql.Customer">
+			<column name="C_ID" />
+		</many-to-one>
+	</class>
+	<query name="priceQuery"><![CDATA[FROM Order o WHERE o.price > :minPrice and o.price < :maxPrice]]></query>
+</hibernate-mapping>

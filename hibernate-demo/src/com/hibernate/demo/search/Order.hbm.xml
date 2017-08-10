@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 17:15:00 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.hibernate.demo.search.Order" table="ORDER_" lazy="true">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="orderNo" type="java.lang.String">
+            <column name="ORDERNO" />
+        </property>
+        <many-to-one name="customer" class="com.hibernate.demo.search.Customer">
+            <column name="C_ID" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
