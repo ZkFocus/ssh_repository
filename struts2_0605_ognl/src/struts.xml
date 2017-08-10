@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />  
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="ognl" class="com.struts2.demo.action.OgnlAction">
+			<result>/ognl.jsp</result>
+		</action>
+		<action name="ognlObject" class="com.struts2.demo.action.OgnlObjectAction">
+			<result>/ognlObject.jsp</result>
+		</action>
+		<action name="ognlDeep" class="com.struts2.demo.action.OgnlDeepAction">
+			<result>/ognlDeep.jsp</result>
+		</action>
+	</package>
+</struts>
