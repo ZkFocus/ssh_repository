@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+   <!--  <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+
+    <package name="default" namespace="/" extends="struts-default">
+
+        <default-action-ref name="index" />
+
+        <global-results>
+            <result name="error">/WEB-INF/jsp/error.jsp</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+
+        <action name="index">
+            <result type="redirectAction">
+                <param name="actionName">HelloWorld</param>
+                <param name="namespace">/example</param>
+            </result>
+        </action>
+    </package>
+
+    <include file="example.xml"/> -->
+
+    <!-- Add packages here -->
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/> 
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true"/>
+    <!-- <constant name="struts.i18n.encoding" value="GBK"></constant>  -->  
+    <package name="default" namespace="/struts" extends="struts-default">
+        <action name="user*" class="com.struts2.action.demo.UserAction" method="{1}">
+        	<result>/user{1}.jsp</result>
+        </action>
+        <action name="hello" class="com.struts2.action.demo.Action3">
+            <result name="success">/hello3.jsp</result>
+        </action>
+        <action name="web" class="com.struts2.action.demo.WebAction4">
+        	<result>/web.jsp</result>
+        </action>
+        <action name="dynamic" class="com.struts2.action.demo.DynamicResultAction">
+        	<result>${view}</result>
+        </action>
+        <action name="ognl" class="com.struts2.action.demo.OgnlAction">
+        	<result>/ognl.jsp</result>
+        </action>
+         <action name="tag" class="com.struts2.action.demo.TagAction">
+        	<result>/tag.jsp</result>
+        </action>
+    </package>
+    
+
+</struts>
