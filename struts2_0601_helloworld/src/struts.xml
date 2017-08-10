@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	   <!-- 
+    	package 组织struts2中不同的模块，比如一个商城系统包含用户管理，订单管理，角色管理等，package可指定为user,order,role等
+    	name:必须，用于指定模块的名字，可用于其他模块引用
+    	extends:指定当前包继承包的名字 ，默认为struts-default（struts2-core-2.32.2.jar /struts-default.xml）
+     -->
+	<package name="default" namespace="/struts" extends="struts-default">
+		<!-- 
+			action 将一个请求URL，即action的名字，映射到一个类上，默认为com.opensymphony.xwork2.ActionSupport
+			name:指定action的名字，用于匹配URL
+			
+			result：用于响应结果
+		 -->
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+		
+		<action name="hello" class="com.struts2.demo.HelloAction">
+			<result>/helloaction.jsp</result>
+		</action>
+		<!-- method 指定class执行的方法 -->
+		<action name="method" class="com.struts2.demo.HelloMethod" method="add">
+			<result>/hellomethod.jsp</result>
+		</action>
+	</package>
+</struts>
