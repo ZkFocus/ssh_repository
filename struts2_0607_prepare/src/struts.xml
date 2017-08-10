@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<package name="default" namespace="/" extends="struts-default">
+		<!-- 修改拦截器栈 -->
+		<interceptors>
+			<interceptor-stack name="myInterceptorStck">
+				<interceptor-ref name="paramsPrepareParamsStack">
+					<!-- 修改拦截器栈属性值，name.filed -->
+					<!-- alwaysInvokePrepare 如果其值为true则调用接口定义的prepare方法 -->
+					<param name="prepare.alwaysInvokePrepare">true</param>
+					<!-- firstCallPrepareDo如果值为true，则先调用prepareDoXXX方法,如果prepareDoXXX方法没有的话，再调用prepareXXX方法 -->
+					<param name="prepare.firstCallPrepareDo">true</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="myInterceptorStck" />
+		<action name="prepare" class="com.struts2.action.demo.PrepareAction">
+			<result name="add">/prepare.jsp</result>
+			<result name="update">/prepare.jsp</result>
+		</action>
+
+	</package>
+</struts>
