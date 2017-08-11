@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="apple" class="com.hp.spring.collection.Apple" p:color="Red"></bean>
+
+<bean id="address" class="com.hp.spring.collection.Address" p:city="ZhengZhou"></bean>
+
+<bean id="collectionBean" class="com.hp.spring.collection.CollectionBean">
+	<!-- 注入list -->
+	<property name="someList">
+		<list>
+			<value>someListValue</value>
+			<ref bean="apple"/>
+		</list>	
+	</property>
+	
+	 <!-- results in a setSomeSet(java.util.Set) call -->
+    <property name="someSet">
+        <set>
+            <value>just some string</value>
+            <ref bean="address" />
+            <ref bean="apple" />
+            
+        </set>
+    </property>
+    <!-- results in a setSomeMap(java.util.Map) call -->
+    <property name="someMap">
+        <map>
+            <entry key="an entry" value="just some string"/>
+            <entry key ="a ref" value-ref="address"/>
+        </map>
+    </property>
+	
+</bean>
+
+</beans>

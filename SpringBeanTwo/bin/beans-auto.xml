@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="address2" class="com.hp.spring.auto.Address"  p:city="ZhengZhou"></bean>
+
+
+<bean id="apple2" class="com.hp.spring.auto.Apple" p:color="Red"></bean>
+
+<!-- 自动注入 
+	byName  通过与bean的属性名字对应来进行注入 
+	byType  通过与bean的属性类型一致的话进行配置
+-->
+<bean id="user" class="com.hp.spring.auto.User" p:name="Tom"  autowire="byName"></bean>
+</beans>

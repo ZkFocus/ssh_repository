@@ -1,0 +1,4 @@
+<beans>
+	<bean id="chw" class="com.spring.old.CHello"></bean>
+	<bean id="ehw" class="com.spring.old.EHello"></bean>
+</beans>

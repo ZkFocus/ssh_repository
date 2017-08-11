@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="email" class="com.hp.spring.map.Email" p:address="abc@sina.com"></bean>
+		
+	<bean id="email2" class="com.hp.spring.map.Email" p:address="abc@qq.com"></bean>
+	
+	<bean id="email3" class="com.hp.spring.map.Email" p:address="abc@163.com"></bean>
+	
+	<bean id="email4" class="com.hp.spring.map.Email" p:address="abc@baidu.com"></bean>
+	
+	
+	<!-- map属性的注入 
+		<map> entry 
+		必须指定key
+		value-ref:引用对象 
+		value int,Stirng 
+	 -->
+	<bean id="user" class="com.hp.spring.map.User">
+		<property name="name" value="Kobe"></property>
+		<property name="emails">
+			<map>
+				<entry key="AA" value-ref="email"></entry>
+				<entry key="BB" value-ref="email2"></entry>
+				<entry key="CC" value-ref="email3"></entry>
+				<entry key="DD" value-ref="email4"></entry>
+				
+			</map>
+		</property>
+	</bean>
+
+</beans>
