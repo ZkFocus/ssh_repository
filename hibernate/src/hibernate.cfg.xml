@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    	<!-- 配置连接数据库的基本信息 -->
+    	<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    	<property name="hibernate.connection.url">jdbc:mysql:///sampledb</property>
+    	<property name="hibernate.connection.username">root</property>
+    	<property name="hibernate.connection.password">root</property>
+    	<property name="hiernate.dialect">org.hibernate.dialect.MySQL55Dialect</property>
+    	
+    	
+    	<!-- 配置对操作表的SQL信息 -->
+    	<!-- hibernate.show_sql 用于显示SQL -->
+    	<property name="hibernate.show_sql">true</property>
+    	<!-- 用于对打印的SQL进行格式化 -->
+    	<property name="hibernate.format_sql">true</property>
+    	<!-- 指定表的生成方式 -->
+    	<property name="hibernate.hbm2ddl.auto">update</property>
+    	<!-- 映射  实体类的映射文件 -->
+    	<mapping resource="com/hp/hibernate/demo/User.hbm.xml"/>	
+    </session-factory>
+</hibernate-configuration>
