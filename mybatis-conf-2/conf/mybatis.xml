@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<!-- 引入外部properties配置文件
+	resource：引入类路径的资源
+	url:引入指定地址的资源
+ -->
+<properties resource="db.properties" ></properties>
+
+<!-- name：属性名  value：属性值 -->
+<settings>
+	<setting name="mapUnderscoreToCamelCase" value="true"/>
+</settings>
+
+<typeAliases>
+
+<!--
+typeAlias 为类起别名  别名不区分大小写
+type:指定别名类的全路径，默认别名为user 
+alias:别名
+-->
+	<typeAlias type="com.mybatis.demo.entity.User" alias="user"/>
+	
+	<!-- 批量起别名 
+		package:为某包下的所有类批量起别名
+		name:包名
+		包含子包的情况下 配合@Alias注解使用
+	-->
+	<package name="com.mybatis.demo.entity"/>
+</typeAliases>
+
+	<environments default="development">
+		
+		<!-- 配置多环境使用 id：指定环境ID
+			transactionManager：事务管理器 
+				type:事务管理器类型 There are two TransactionManager types (i.e. type="[JDBC|MANAGED]") that are included withMyBatis
+			dataSource：数据源
+				There are three build-in dataSource types (i.e. type="[UNPOOLED|POOLED|JNDI]"):
+				
+		 -->
+		<environment id="test">
+			<transactionManager type="JDBC"/>
+			<dataSource type=""></dataSource>
+		</environment>
+		
+	
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.user}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	
+	<mappers>
+		<!-- class： 引用注册接口  
+			有映射文件：映射文件名与接口同名，且与接口同一目录
+			基于注解方式：例子如下	
+		-->
+			
+		<mapper class="com.mybatis.demo.dao.UserManagerAnnotation"/>
+		
+		<mapper resource="UserMapper.xml" />
+			
+	</mappers>
+	
+</configuration>
