@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Untitled Document</title>
+		<style type="text/css">
+			div,span{ 
+			  width: 140px;
+			    height: 140px;
+			    margin: 5px;
+			    background: #aaa;
+			    border: #000 1px solid;
+			    float: left;
+			    font-size: 17px;
+			    font-family: Verdana;
+			 } 
+		</style>
+		
+		<!-- 导入 jQuery 库 -->
+		<script type="text/javascript" src="jquery-1.7.2.js"></script>
+		<script type="text/javascript">
+			
+			$(function(){
+				 $("button").click(function(){ 
+				     $(".mydiv,span").hide(); 
+				   }) 
+			})
+		</script>
+	</head>
+	<body>		
+	<button>点击隐藏class为mydiv和span元素</button> 
+	<br>
+		<div class="mydiv">class为mydiv</div> 
+   		<div class="anotherdiv"></div> 
+   		<span>span元素</span>
+	</body>
+</html>
+

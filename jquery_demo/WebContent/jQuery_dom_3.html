@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>dom操作</title>
+<script language="javascript" type="text/javascript" src="jquery-1.7.2.js"></script>
+<script language="javascript" type="text/javascript">
+	$(function(){
+		  $("button").click(function () {
+			  //alert($("p").html());
+			  //$("p").html("<strong>你最最最喜欢的水果是？</strong>");
+			  
+			  //alert($("p").text());
+			  //$("p").text("<strong>你最最最喜欢的水果是？</strong>");
+			  
+			 alert( $("input").val());
+          });
+	})
+</script>
+</head>
+<body>
+
+<p title="选择你最喜欢的水果."><strong>你最喜欢的水果？</strong></p>
+<button>click</button>
+<input type="text" id="username" value="请输入用户名" />
+
+</body>
+</html>

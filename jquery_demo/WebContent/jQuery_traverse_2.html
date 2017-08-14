@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery-1.7.2.js"></script>
+<script type="text/javascript">
+
+	$(function(){
+		var map = { 
+				地名: ["北京","天津","上海"], 
+				民族: ["汉族","藏族","维吾尔族"] 
+				}; 
+
+		$.each(map,function(key,values){ 
+			console.log(key); 
+			$(values).each(function(){ 
+			console.log("\t" + this); 
+			});			
+		}); 
+	});
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

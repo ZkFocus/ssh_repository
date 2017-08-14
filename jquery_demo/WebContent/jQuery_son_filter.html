@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="jquery-1.7.2.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#btn1").click(function(){
+					$("table tr:nth-child(2)").css("background", "#ffbbaa");
+				});
+				$("#btn2").click(function(){
+					$("table tr:first-child").css("background", "#ffbbaa");
+				});
+				$("#btn3").click(function(){
+					$("table tr:last-child").css("background", "#ffbbaa");
+				});
+				
+				$("#btn4").click(function(){
+					$("table tr:only-child").css("background", "#ffbbaa");
+				});
+			});
+			
+				</script>
+</head>
+<body>
+	<input type="button" value="选取每个table的第二行" id="btn1" />
+		<input type="button" value="选取每个table的第一行" id="btn2" />
+		<input type="button" value="选取每个table的最后一行" id="btn3" />
+		
+		<input type="button" value="选中只有一行的table的那一行" id="btn4" />
+	<table border="1" width="50%" cellpadding="1" cellspacing="0">
+		<tr><td>1</td><td>第一行</td></tr>
+		<tr><td>2</td><td>第二行</td></tr>
+		<tr><td>3</td><td>第三行</td></tr>
+	</table>
+	<br>
+	<table border="1" width="50%" cellpadding="1" cellspacing="0">
+		<tr><td>1</td><td>第一行</td></tr>
+		<tr><td>2</td><td>第二行</td></tr>
+		<tr><td>3</td><td>第三行</td></tr>
+	</table>
+	<br>
+	<table border="1" width="50%" cellpadding="1" cellspacing="0">
+		<tr><td>1</td><td>第一行</td></tr>
+		</table>
+	<br>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery动画</title>
+<script type="text/javascript" src="jquery-1.7.2.js"></script>
+<script type="text/javascript">
+$(function(){
+	  $("#hide").click(function(){
+	    $("p").hide(1000);
+	  });
+	  $("#show").click(function(){
+	    $("p").show(1000);
+	  });
+	});
+</script>
+</head>
+<body>
+<p>如果你点击“隐藏” 按钮，我将会消失。</p>
+<button id="hide">隐藏</button>
+<button id="show">显示</button>
+</body>
+</html>

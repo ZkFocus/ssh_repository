@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>内容过滤器</title>
+
+<script type="text/javascript" src="jquery-1.7.2.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#btn1").click(function(){
+					$("tr:contains('内容')").css("background", "#ffbbaa");
+				});
+				//empty 匹配所有不包含子元素或者文本的空元素
+				$("#btn2").click(function(){
+				 	$("td:empty").css("background", "#ffbbaa");
+				});
+				$("#btn3").click(function(){
+					$("tr:has(span)").css("background", "#ffbbaa");
+				});
+				$("#btn4").click(function(){
+					$("td:parent").css("background", "#ffbbaa");
+				});
+				$("#btn5").click(function(){
+				 	$("tr:odd").css("background", "#ffbbaa");
+				});
+				$("#btn6").click(function(){
+					 $("tr:eq(2)").css("background", "#ffbbaa");
+				});
+				$("#btn7").click(function(){
+					 $("tr:gt(1)").css("background", "#ffbbaa");
+				});
+				$("#btn8").click(function(){
+					 $("tr:lt(2)").css("background", "#ffbbaa");
+				});
+				$("#btn9").click(function(){
+					$(":header").css("background", "#ffbbaa");
+				});
+			});
+			
+			
+		</script>
+
+</head>
+<body>
+		<input type="button" value="选中包含“内容”的行 " id="btn1" />
+		<input type="button" value="选中没有内容的行 " id="btn2" />
+		<input type="button" value="选中包含span的行 " id="btn3" />
+		<input type="button" value="选中包含所有文本的单元格 " id="btn4" />
+
+	<h3>各省市行政区划</h3>
+	<table border="1" width="50%" cellpadding="1" cellspacing="0">
+		<tr><td>1</td><td>jQuery内容过滤器<span>Hello</span></td></tr>
+		<tr><td>2</td><td>jQuery内容过滤器World</td></tr>
+		<tr><td>3</td><td>jQuery内容过滤器</td></tr>
+		<tr><td>4</td><td>jQuery过滤器</td></tr>
+		<tr><td>5</td><td>jQuery过滤器</td></tr>
+		<tr><td>6</td><td>jQuery过滤器</td></tr>
+		<tr><td>7</td><td>Tom</td></tr>
+		<tr><td>8</td><td></td></tr>
+		
+		
+	</table>
+</body>
+
+
+</html>

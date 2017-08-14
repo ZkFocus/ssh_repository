@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery事件</title>
+<script type="text/javascript" src="jquery-1.7.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+	  $("p").dblclick(function(){
+	    $(this).hide();
+	  });
+	});
+</script>
+</head>
+<body>
+<p>双击鼠标左键的，我就消失。</p>
+<p>双击我消失！</p>
+<p>双击我也消失！</p>
+
+</body>
+</html>

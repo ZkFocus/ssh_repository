@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>基本过滤器</title>
+
+<script type="text/javascript" src="jquery-1.7.2.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#btn1").click(function(){
+				 	$("tr:first").css("background", "#aabbcc");
+				});
+				$("#btn2").click(function(){
+				 	$("tr:last").css("background", "#ffbbaa");
+				});
+				$("#btn3").click(function(){
+					 $("td:not(:even)").css("background", "#ffbbaa");
+				});
+				$("#btn4").click(function(){
+					 $("tr:even").css("background", "#ffbbaa");
+				});
+				$("#btn5").click(function(){
+				 	$("tr:odd").css("background", "#ffbbaa");
+				});
+				$("#btn6").click(function(){
+					 $("tr:eq(2)").css("background", "#ffbbaa");
+				});
+				$("#btn7").click(function(){
+					 $("tr:gt(1)").css("background", "#ffbbaa");
+				});
+				$("#btn8").click(function(){
+					 $("tr:lt(2)").css("background", "#ffbbaa");
+				});
+				$("#btn9").click(function(){
+					$(":header").css("background", "#ffbbaa");
+				});
+			});
+			
+			
+		</script>
+
+</head>
+<body>
+		<input type="button" value="获取匹配的第一个tr元素 " id="btn1" />
+		<input type="button" value="获取匹配的最后一个tr元素 " id="btn2" />
+		<input type="button" value="获取除了索引是偶数的td " id="btn3" />
+		<br>
+		<input type="button" value="匹配所有索引值为偶数的tr元素，从 0 开始计数 " id="btn4" />
+		<input type="button" value="匹配所有索引值为奇数的tr元素，从 0 开始计数 " id="btn5" />
+		<input type="button" value="匹配一个给定索引值的元素 " id="btn6" />
+		<br>		
+		<input type="button" value="匹配所有大于给定索引值的元素 " id="btn7" />
+		<input type="button" value="匹配所有小于给定索引值的元素 " id="btn8" />
+		<input type="button" value="匹配如 h1, h2, h3之类的标题元素 " id="btn9" />
+
+	<h3>各省市行政区划</h3>
+	<table border="1" width="50%" cellpadding="1" cellspacing="0">
+		<thead>
+			<tr>
+				<th>北京</th>
+				<th>上海</th>
+				<th>河南</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>海淀</td>
+				<td>徐汇</td>
+				<td>郑州</td>
+			</tr>
+			<tr>
+				<td>朝阳</td>
+				<td>闸北</td>
+				<td>焦作</td>
+			</tr>
+			<tr>
+				<td>昌平</td>
+				<td>黄埔</td>
+				<td>信阳</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hello jQuery</title>
+<script type="text/javascript" src="jquery-1.7.2.js"></script>
+<script type="text/javascript">
+
+	$(function(){
+		$("p").click(function(){
+		/* 	//获取jQuery对象
+			var $p =$("p");
+			//jQuery对象是一个数组
+			alert($p.length);
+			//将jQuery对象转为DOM对象
+			var pDom=$p.get(0);
+			//调用DOM对象方法
+			alert(pDom.innerHTML); */
+			var p =document.getElementById("p1");//选取DOM对象
+			alert($(p).text());//使用$()进行包装
+		});
+	})
+</script>
+</head>
+<body>
+	<p id="p1">hello jQuery</p>
+	<p>hello jQuery2</p>
+</body>
+</html>

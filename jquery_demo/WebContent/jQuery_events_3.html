@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery事件</title>
+<script type="text/javascript" src="jquery-1.7.2.js"></script>
+<script type="text/javascript">
+	$(function(){
+		/*   $("#p").mouseenter(function(){
+			    alert('您的鼠标移到了 id="p" 的元素上!');
+		  }); */
+		/*   $("#p").mouseleave(function(){
+			    alert("再见，您的鼠标离开了该段落。");
+		}); */
+
+		/*  $("#p").mousedown(function(){
+			    alert("鼠标在该段落上按下！");
+			  }); */
+			  
+		  $("#p").mouseup(function(){
+			    alert("鼠标在段落上松开。");
+			  });
+	});
+</script>
+</head>
+<body>
+<p id="p">鼠标指针进入此处，会看到弹窗。</p>
+
+</body>
+</html>

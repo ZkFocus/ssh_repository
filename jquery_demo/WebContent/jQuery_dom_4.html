@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>dom css()操作</title>
+ <style type="text/css">
+            .colorClass {
+                color: red;
+            }
+        </style>
+<script language="javascript" type="text/javascript" src="jquery-1.7.2.js"></script>
+<script type="text/javascript">
+            $("document").ready(function() {
+                $("#btn1").click(function() {
+                    $("p").addClass("colorClass");
+                });
+                $("#btn2").click(function() {
+                    $("p").removeClass("colorClass");
+                });
+                $("#btn3").click(function() {
+                    $("p").toggleClass("colorClass");
+                });
+                $("#btn4").click(function() {
+                    alert($("#p1").css("color"));
+                });
+                $("#btn5").click(function() {
+                    //$("#p1").css("color","red");
+                    //设置多个css属性写法
+                    $("#p1").css({
+                        "color": "red",
+                        "font-size": "2em"
+                    });
+                });
+            });
+        </script>
+</head>
+<body>
+
+		<h2>添加类，删除类，添加删除切换</h2>
+        <p>段落段落段落段落段落段落段落段落段落</p>
+        <button id="btn1">添加类</button>
+        <button id="btn2">删除类</button>
+        <button id="btn3">添加删除切换</button>
+        <hr />
+
+        <h2>返回css属性，设置css属性</h2>
+        <p id="p1">段落段落段落段落段落段落段落段落段落</p>
+        <button id="btn4">返回css属性</button>
+        <button id="btn5">设置css属性</button>
+        <hr />
+
+
+</body>
+</html>

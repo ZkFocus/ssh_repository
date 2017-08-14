@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>属性选择器学习</title>
+<script language="javascript" type="text/javascript" src="jquery-1.7.2.js"></script>
+<style>
+   .highlight{   
+   background-color: #FF22EE
+  }
+
+</style>
+
+
+
+<script language="javascript" type="text/javascript">
+		$(function(){
+			$().checked=false;
+
+		$("#btn1").click(function(){
+			$("div[id]").addClass("highlight");
+		});
+		
+		$("#btn2").click(function(){
+			$("input[name='basketball']").attr("checked",true);
+		});
+		$("#btn3").click(function(){
+			//此选择器等价于:not([attr=value])要匹配含有特定属性但不等于特定值的元素，请使用[attr]:not([attr=value])
+			//$("input:not(input[name='basketball'])").attr("checked",true);
+			$("input[name!='basketball']").attr("checked",true);
+		});
+		$("#btn4").click(function(){
+			$("input[name^='foot']").attr("checked",true); 
+		});
+		$("#btn5").click(function(){
+			$("input[name$='ball']").attr("checked",true);
+		});
+		$("#btn6").click(function(){
+			$("input[name*='sket']").attr("checked",true); 
+		});
+		$("#btn7").click(function(){
+			$("input[id][name$='ball']").attr("checked",true);
+		});
+		$("#btn8").click(function(){
+			$("input[type='checkbox']").attr("checked",false);
+		});
+		
+	})
+</script>
+
+</head>
+
+<body>
+	
+		<input type="button" value="查找所有含有ID属性的div元素" id="btn1" />
+		<input type="button" value="选中name属性值为basketball的input元素 " id="btn2" />
+		<input type="button" value="选中 name属性值不为basketball的input元素" id="btn3" />
+		
+		<input type="button" value="查找所有 name 以 'foot' 开始的 input 元素" id="btn4" />
+		<input type="button" value="查找所有 name 以 'ball' 结尾的 input 元素" id="btn5" />
+		<input type="button" value="查找所有 name 包含 'sket' 的 input 元素" id="btn6" />
+		
+		<input type="button" value="找到所有含有 id属性，并且它的 name属性是以 ball结尾的" id="btn7" />
+	<input type="button" value="找到所有含有 type属性，并且它的 type属性是checkbox的" id="btn8" />
+
+   <div id="test">ID为test的DIV</div>
+   <input type="checkbox" id="id1" name="football" value="足球" />足球
+   <input type="checkbox" name="volleyball" value="排球" />排球
+   <input type="checkbox" id="id3" name="basketball" value="篮球" />篮球
+   <input type="checkbox" id="id4" name="other" value="其他" />其他
+   
+</body>
+</html>

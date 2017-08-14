@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>dom操作</title>
+<script language="javascript" type="text/javascript" src="jquery-1.7.2.js"></script>
+<script language="javascript" type="text/javascript">
+	$(function(){
+		  $("button").click(function () {
+			  //读操作
+              //alert($("p").attr("title"));//获取属性
+              // this code can only get the first element's attribute.
+              //写操作
+			   $("p").attr("title","Hello World");
+			  alert($("p").attr("title")); 
+          });
+	})
+</script>
+</head>
+<body>
+
+<p title="p">paragraph 1</p>
+<span title="span">span</span>
+<br/>
+<button>get title</button>
+
+</body>
+</html>
