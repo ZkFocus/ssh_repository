@@ -1,0 +1,11 @@
+1, 导入jar包 
+
+2，配置数据源
+
+3，测试数据源
+
+
+4,配置 Spirng 的 JdbcTemplate
+
+
+5,配置BookRepository
