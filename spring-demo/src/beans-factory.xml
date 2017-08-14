@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 通过静态工厂方法配置bean -->
+	<bean id="apple" class="com.hp.demo.factory.StaticFactoryApple"
+		factory-method="getApple">
+		<constructor-arg value="Red"></constructor-arg>
+	</bean>
+
+	<!-- 配置工厂实例 -->
+	<bean id="appleFactory" class="com.hp.demo.factory.InstanceAppleFactory">
+	</bean>
+	<!-- 通过实例工厂方法来配置bean -->
+	<bean id="apple2" factory-bean="appleFactory" factory-method="getApple">
+		<constructor-arg value="Green"></constructor-arg>
+	</bean>
+</beans>

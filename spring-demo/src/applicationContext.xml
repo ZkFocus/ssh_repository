@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+<!-- 配置bean 
+	class是javabean的全类名，说明就是通过反射的方式在IOC容器中创建bean。所以该bean必须得有无参数的构造器。
+	id:标示容器中的bean。ID唯一。通过该ID名称来获取创建好的bean
+	 -->
+	<bean id="helloworld" class="com.hp.demo.entity.HelloWorld">
+		<property name="name" value="Tom"></property>
+	</bean>
+	
+	<bean id="helloworld2" class="com.hp.demo.entity.HelloWorld">
+		<constructor-arg value="Green"></constructor-arg>
+	</bean>
+
+	<!-- 通过参数类型 -->	
+	<bean id="apple" class="com.hp.demo.entity.Apple">
+		<constructor-arg value="Red" type="String"></constructor-arg>
+		<constructor-arg value="10" type="int"></constructor-arg>
+		<constructor-arg value="15.6" type="float"></constructor-arg>
+	</bean>
+	
+	<!-- 通过参数位置 -->
+	<bean id="apple2" class="com.hp.demo.entity.Apple">
+		<constructor-arg value="10" index="1"></constructor-arg>
+		<constructor-arg value="Green" index="0"></constructor-arg>
+		<constructor-arg value="15.6" type="float"></constructor-arg>
+	</bean>
+	
+	<bean id="apple3" class="com.hp.demo.entity.Apple">
+		<constructor-arg value="Pink" ></constructor-arg>
+		<constructor-arg value="10" type="int"></constructor-arg>
+	</bean>
+	
+	
+	<bean id="p" class="com.hp.demo.entity.Product">
+		<property name="placeName" value="北京"></property>
+		<property name="areaCode" value="010"></property>
+		<!-- <property name="apple" ref="apple"></property> -->
+		
+		<!-- 内部bean 不能被外部引用 像局部变量 id要不要无所谓 写了也没用-->
+		<property name="apple">
+			<bean id="apple" class="com.hp.demo.entity.Apple">
+				<constructor-arg value="Green" type="String"></constructor-arg>
+				<constructor-arg value="13" type="int"></constructor-arg>
+				<constructor-arg value="15.6" type="float"></constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- 集合属性List -->
+	
+	<bean id="user" class="com.hp.demo.entity.User">
+		<property name="name" value="King"></property>
+		<property name="apples">
+			<list>
+				<ref bean="apple"/>
+				<ref bean="apple2"/>
+				<ref bean="apple3"/>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 集合属性map -->
+	<bean id="userMap" class="com.hp.demo.entity.UserMap">
+		<property name="name" value="Jim"></property>
+		<property name="apples">
+			<map>
+				<entry key="AA" value-ref="apple"></entry>
+				<entry key="BB" value-ref="apple2"></entry>
+				<entry key="CC" value-ref="apple3"></entry>
+			</map>
+		</property>
+	</bean>
+	
+	<util:list id="appleUtil">
+		<ref bean="apple"/>
+		<ref bean="apple2"/>
+		<ref bean="apple3"/>
+	</util:list>
+	
+	<bean id="userUtil" class="com.hp.demo.entity.User">
+		<property name="name" value="Kimy"></property>
+		<property name="apples" ref="appleUtil"></property>
+	</bean>
+	
+	<bean id="helloworld3" class="com.hp.demo.entity.HelloWorld" p:name="Spring">
+	</bean>
+	
+</beans>

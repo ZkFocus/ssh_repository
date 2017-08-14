@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--
+	 默认 创建bean的作用域为singleton  容器初始化的时候创建bean。在整个容器的生命周期内只创建一个bean
+	prototype:原型的，容器初始化的时候不创建bean，在每次获取请求bean的时候创建
+	-->
+	
+	<bean id="address" class="com.hp.demo.scope.Address" scope="prototype"></bean>
+	
+	
+</beans>

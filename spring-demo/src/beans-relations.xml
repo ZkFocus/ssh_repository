@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 当设置abstract="true" 就当做模块 只能用来继承  -->
+	<bean id="address" class="com.hp.demo.relations.Address" p:city="ZhengZhou" p:province="HeNan" abstract="true"></bean>
+	<bean id="address2" class="com.hp.demo.relations.Address" p:city="JiaoZuo" p:province="HeNan"></bean>
+	<bean id="address3" parent="address" p:city="WuHan" p:province="HuBei"></bean>
+	<bean id="student" class="com.hp.demo.relations.Student" p:name="Green"></bean>
+	<bean id="teacher" class="com.hp.demo.relations.Teacher" p:address-ref="address2" p:name="Tom" ></bean>
+
+	
+
+</beans>

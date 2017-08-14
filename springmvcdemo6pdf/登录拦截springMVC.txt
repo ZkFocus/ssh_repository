@@ -1,0 +1,9 @@
+﻿1.实现登录拦截功能
+	现实HandlerInterceptor接口中的preHandle 方法
+2.配置xml文件
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping />
+			<bean class="com.hp.bean.MyInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>

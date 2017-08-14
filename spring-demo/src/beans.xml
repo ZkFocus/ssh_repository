@@ -1,0 +1,9 @@
+
+<beans>
+
+<bean class="com.hp.demo.introducation.traditional.EHello" id="ehello">
+
+
+</bean>
+
+</beans>

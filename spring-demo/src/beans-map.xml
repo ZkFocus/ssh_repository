@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="car" class="com.hp.demo.testMap.Car">
+	<property name="brand" value="Benz"></property>
+</bean>
+<bean id="car2" class="com.hp.demo.testMap.Car">
+	<property name="brand" value="BMW"></property>
+</bean>
+<bean id="map" class="com.hp.demo.testMap.User">
+	<property name="name" value="Tom"></property>
+	<property name="maps">
+		<map>
+			<entry key="AA" value-ref="car"></entry>
+			<entry key="BB" value-ref="car2"></entry>
+			<entry key="CC"><null></null></entry>
+		</map>
+	</property>
+</bean>
+</beans>
