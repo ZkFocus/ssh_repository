@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic Form - jQuery EasyUI Demo</title>
+	<script type="text/javascript" src="jquery-easyui-1.5.2/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery-easyui-1.5.2/jquery.easyui.min.js"></script>
+	<link href="jquery-easyui-1.5.2/themes/default/easyui.css" rel="stylesheet" type="text/css"/>
+	<link href="jquery-easyui-1.5.2/themes/icon.css" rel="stylesheet" type="text/css"/>
+	
+</head>
+<body>
+	<h2>Basic datagrid</h2>
+	 <table id="dg" width="100%"></table>
+	 <div style="text-align:right;padding:5px">
+ 		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">load</a>
+ 	 </div>
+	<script>
+ function submitForm(){
+	 
+	 
+	$('#dg').datagrid({
+	    url:'userlist',
+	    pagination:true,
+	    pageList:[2,4,6,8],
+	    pageSize:2,
+	    pageNumber:1,
+	    columns:[[
+	    	{field:'id',title:'编号',width:100},
+			{field:'email',title:'邮箱',width:100},
+			{field:'message',title:'消息',width:100},
+			{field:'name',title:'姓名',width:100},
+			{field:'subject',title:'科目',width:100}
+	    ]]
+	});
+	
+	
+ }
+	</script>
+</body>
+</html>

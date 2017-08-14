@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic Form - jQuery EasyUI Demo</title>
+	<script type="text/javascript" src="jquery-easyui-1.5.2/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery-easyui-1.5.2/jquery.easyui.min.js"></script>
+	<link href="jquery-easyui-1.5.2/themes/default/easyui.css" rel="stylesheet" type="text/css"/>
+	<link href="jquery-easyui-1.5.2/themes/icon.css" rel="stylesheet" type="text/css"/>
+	
+</head>
+<body>
+	<h2>Basic Form</h2>
+	<p>Fill the form and submit it.</p>
+	<div style="margin:20px 0;"></div>
+	<div class="easyui-panel" title="New Topic" style="width:400px">
+		<div style="padding:10px 60px 20px 60px">
+	    <form id="ff" method="post">
+	    	<table cellpadding="5">
+	    		<tr>
+	    			<td>Name:</td>
+	    			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>Email:</td>
+	    			<td><input class="easyui-textbox" type="text" name="email" data-options="required:true,validType:'email'"></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>Subject:</td>
+	    			<td><input class="easyui-textbox" type="text" name="subject" data-options="required:true"></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>Message:</td>
+	    			<td><input class="easyui-textbox" name="message" data-options="multiline:true" style="height:60px"></input></td>
+	    		</tr>
+	    		
+	    	</table>
+	    </form>
+	    <div style="text-align:right;padding:5px">
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">Submit</a>
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">Clear</a>
+	    </div>
+	    </div>
+	</div>
+	<script>
+		function submitForm(){
+			$('#ff').form('submit',{
+				//表单提交的地址
+				url:'userregister',
+				//提交之前启用校验，验证返回true 提交表单
+				onSubmit:function(){
+					return $(this).form('enableValidation').form('validate');
+				},
+				 success: function(data){    
+				        var resp = eval('(' + data + ')');  // change the JSON string to javascript object    
+				        if (resp.success){    
+				        	
+				        	// 消息将显示在顶部中间
+				        	$.messager.show({
+				        		title:'注册消息',
+				        		msg:resp.msg,
+				        		showType:'show',
+				        		style:{
+				        			right:'',
+				        			top:document.body.scrollTop+document.documentElement.scrollTop,
+				        			bottom:''
+				        		}
+				        	});
+
+				        	
+				        	
+				        }    
+				    }    
+
+			});
+		}
+		function clearForm(){
+			$('#ff').form('clear');
+		}
+	</script>
+</body>
+</html>
