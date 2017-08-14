@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>easyUI CURD</title>
+<script type="text/javascript" src="jquery-easyui-1.5.2/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="jquery-easyui-1.5.2/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="jquery-easyui-1.5.2/themes/icon.css">
+<script type="text/javascript"
+	src="jquery-easyui-1.5.2/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="jquery-easyui-1.5.2/locale/easyui-lang-zh_CN.js"></script>
+
+</head>
+<body>
+	<script type="text/javascript">
+
+
+//定义一个type变量，判断修改添加操作
+var type = "add" ;
+
+$(function(){
+$('#dg').datagrid({    
+    url:'listUserAction', 
+    idField:'id',
+    frozenColumns:[ [ {field:'id',checkbox:true},//复选框
+                      {field:'name',title:'姓名',width:100,align:'center'} ] ],
+    columns:[[    
+        {field:'tel',title:'电话',width:100,align:'center'},    
+        {field:'address',title:'地址',width:100,align:'center'}
+    ]],
+    pagination:true,//分页
+    fitColumns:true,//列自适应宽度
+    rownumbers:true,//显示行号
+    striped:true,//斑马线
+    singleSelect:false,//是否单选
+    sortName:'id',//排序字段
+    sortOrder:'desc',//排序方式
+    remoteSort:true,//服务器端排序
+    toolbar:[
+             {iconCls:'icon-reload',text:'刷新',
+                 handler:function(){
+                    $("#dg").datagrid('reload');}},
+             {iconCls:'icon-search',text:'查询',
+                         handler:function(){
+                             //序列化查询表单
+                            var f =  $("#search-form").serialize() ;
+                            
+                            $("#dg").datagrid({url:"listUserAction?"+f}); 
+                            $("#search-form").form("reset");
+                            $("#dg").datagrid('reload'); 
+                            }},
+             {iconCls:'icon-add',text:'添加',
+                        handler:function(){
+                            $("#id").textbox({readonly:false});
+                            type = "add" ;
+                            //清除表单旧数据
+                            $("#save-form").form("reset");
+                            $("#save-user").dialog('open').dialog('setTitle','New User'); 
+                            
+                            }
+              },
+             
+             {iconCls:'icon-edit',text:'修改',
+                  		handler:function(){
+                 		//alert("修改");
+                 		//设置主键字段为只读模式
+                 			$("#id").textbox({readonly:true});
+                 
+                 			type = "edit" ;
+                 $("#save-form").form("reset");
+                 //返回第一个被选中的行或如果没有选中的行则返回null
+                 var data = $("#dg").datagrid('getSelected');
+                 if(data){
+                     $("#save-form").form('load',{
+                         id:data.id,
+                         name:data.name,
+                         tel:data.tel,
+                         address:data.address,
+                     } ) ;
+                     $("#save-user").dialog('open').dialog('setTitle','Edit User'); 
+                 }
+                 else{
+                    $.messager.show({title:"提示",msg:"请选中一条记录"});
+                }
+                 }},
+             {iconCls:'icon-remove',text:'删除',handler:function(){
+                 var data = $("#dg").datagrid('getSelected');
+                 if(data){
+                     $.messager.confirm('Confirm','Are you sure you want to destroy this user?',
+                             function(r){
+                                     if(r){
+                                        $.post('deleteUser?id='+data.id,function(result){var msg = eval('('  + result + ')') ;
+                                                if(msg.success){$("#dg").datagrid('reload');alert(msg.message)}});
+                                     }
+                                    
+                     })}
+                 else{
+                     $.messager.show({title:"提示",msg:"请选中一条记录"});
+                     }
+             }},
+         ]
+});  
+})
+</script>
+	<div id="search" class="easyui-panel" style="height: 80px; width: 100%"
+		title="查询条件" data-options="{iconCls:'icon-search',collapsible:true}">
+		<form action="" id="search-form">
+			<br> 
+			姓名<input class="easyui-textbox" id="name" name="name">
+			电话<input class="easyui-textbox" id="tel" name="tel">
+		</form>
+	</div>
+	<table id="dg"></table>
+	<div id="save-user" 
+		class="easyui-dialog"
+		style="width: 400px; height: 300px"
+		data-options="
+			closed:true,
+            modal:true,
+            buttons:[
+                    {	
+                    	text:'保存',iconCls:'icon-save',
+                      	handler:function(){
+                        $('#save-form').form('submit',{
+                        url :'insertUserAction?type=' +type,
+                        onSubmit:function(){
+                        	var isValid = $(this).form('validate');
+                        	if(!isValid){
+                           		$.messager.show({
+                               		title:'消息',
+                                	msg:'提交未通过验证'});
+                            	}
+                             return isValid ;
+                         },
+                         success:function(data){
+                              var msg = eval('('  + data + ')') ;
+                              if(msg.success)
+                              {
+                               $('#dg').datagrid('reload');
+                               $('#save-user').dialog('close');
+                                    alert(msg.message);
+                               }
+                               else
+                                {
+                                  	alert(msg.message)
+                                }
+                           }
+                                        });
+                                 	}},
+                        		{text:'取消',iconCls:'icon-cancel',
+                        				handler:function(){
+                                        	 $('#save-user').dialog('close');
+                                      }}]"
+                               >
+
+		<form action="" id="save-form" method="post">
+			<table border="0" width="100%">
+				<tr>
+					<td align="right" width="30%">编号</td>
+					<td><input class="easyui-textbox" id="id" name="id"
+						data-options="readonly:true"></td>
+				</tr>
+				<tr>
+					<td align="right" width="30%">姓名</td>
+					<td><input class="easyui-textbox" id="name" name="name"
+						data-options="required:true,validType:'length[2,8]'"></td>
+				</tr>
+				<tr>
+					<td align="right" width="30%">电话</td>
+					<td><input class="easyui-textbox" id="tel" name="tel"
+						data-options="required:true,validType:'length[2,11]'"></td>
+				</tr>
+				<tr>
+					<td align="right" width="30%">地址</td>
+					<td><input class="easyui-textbox" id="address" name="address"
+						data-options="required:true,validType:'length[2,10]'"></td>
+				</tr>
+			</table>
+		</form>
+
+	</div>
+
+</body>
+</html>
