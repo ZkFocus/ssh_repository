@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.mybatis.demo.dao.UserResultMap">
+ 	<!-- 
+ 		自定义Javabean返回规则
+ 		type：Javabean类型
+ 		id:引用id值
+ 	 -->
+ 	<resultMap type="com.mybatis.demo.entity.User" id="u">
+ 		<!-- 指定主键列的封装规则
+ 			column：指定列
+ 			property：指定对应Javabean的属性
+ 		 -->
+ 		<id column="id" property="id"/>
+ 		<!-- 指定列的封装规则  不指定则会自动封装 -->
+ 		<result column="tel_num" property="telNum"/>
+ 	</resultMap>
+ <select id="getUserById" resultMap="u">
+		select *  from User where id = #{id}
+	</select>
+<!-- ==========================一对一映射=========================== -->
+ <!-- 
+ SELECT
+    u.id      id,
+    u.name    name,
+    u.tel_num telNum,
+    u.a_id    a_id,
+    a.city    city
+FROM
+    USER u,
+    address a
+WHERE
+    u.a_id=a.id
+AND u.id=1
+  -->
+  
+  <resultMap type="com.mybatis.demo.entity.User" id="userAndAddr">
+ 		 <!--
+ 		 	 column:sql语句查询出的列名 
+ 		 	 property 对应对象的属性，包含ognl形式  如address.city
+ 		 -->
+  		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+  		<result column="telNum" property="telNum"/>
+		<result column="a_id" property="address.id"/>  	
+		<result column="city" property="address.city"/>	
+  </resultMap>
+  
+  
+    <resultMap type="com.mybatis.demo.entity.User" id="userAndAddr2">
+  		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+  		<result column="telNum" property="telNum"/>
+		<!-- association 指定关联的对象 
+			property 指定关联对象的属性名 
+			javaType 属性所属的java类型
+		-->
+		<association property="address" javaType="com.mybatis.demo.entity.Address">
+			<!-- 指定查询出来的结果列与Address对象关联的属性 -->
+			<id column="a_id" property="id"/>
+			<result column="city" property="city"/>
+		</association>
+		
+  </resultMap>
+	<select id="getUserAndAddr" resultMap="userAndAddr2">
+		select 
+			u.id id,u.name name,u.tel_num telNum,u.a_id a_id,a.city city 
+		from user u,address a
+			where u.a_id=a.id and u.id=#{id}
+	</select>
+	
+	<!-- 分步查询 
+		1，根据id查询出user对象
+		2，根据a_id查询address
+		3，赋值address到user
+	
+	-->
+	<resultMap type="com.mybatis.demo.entity.User" id="userByIdAssociation">
+		<id column="id" property="id"/>
+		<result column="tel_num" property="telNum"/>
+		<result column="name" property="name"/>
+		<!-- association 指定分步查询的对象
+			根据com.mybatis.demo.dao.AddressMapper.getAddressById 查询address属性值
+			column指定将查询结果集的某列复制给select查询的参数
+			step：① 先查询出user表中的信息 
+			step：② 将step ①中的查询结果的a_id列值取出  赋值给getAddressById的查询参数
+		-->
+		<association property="address"  select="com.mybatis.demo.dao.AddressMapper.getAddressById"
+		column="a_id"></association>
+	</resultMap>
+	<select id="getUserByIdAssociation" resultMap="userByIdAssociation">
+		select * from user where id = #{id}
+	</select>
+	
+</mapper>

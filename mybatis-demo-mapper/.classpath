@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="conf"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="lib/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="lib/log4j.jar"/>
+	<classpathentry kind="lib" path="lib/mybatis-3.4.4.jar" sourcepath="D:/java/opensource/mybatis/mybatis-3-mybatis-3.4.4"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.7-bin.jar"/>
+	<classpathentry kind="lib" path="lib/jsqlparser-0.9.5.jar"/>
+	<classpathentry kind="lib" path="lib/pagehelper-5.0.4.jar" sourcepath="C:/Users/mbdn/.m2/repository/com/github/pagehelper/pagehelper/5.0.4/pagehelper-5.0.4-sources.jar"/>
+	<classpathentry kind="lib" path="lib/mapper-3.4.2.jar" sourcepath="C:/Users/mbdn/.m2/repository/tk/mybatis/mapper/3.4.2/mapper-3.4.2-sources.jar"/>
+	<classpathentry kind="lib" path="lib/persistence-api-1.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.mybatis.demo.dao.UserMapper">
+ 	
+ 	 <cache type="org.mybatis.caches.ehcache.EhcacheCache"></cache>
+
+	<!-- 原生的二级缓存 
+		<cache eviction="FIFO" flushInterval="10000" readOnly="false" size="2048" /> -->
+ 	 <!-- 
+ 		eviction：缓存的回收策略 
+ 			1.LRU：最近最少使用的：移除最长时间不被使用的对象
+			2.FIFO：先进先出：按对象进入缓存的顺序来移除它们
+			3.SOFT： 软引用:移除基于垃圾回收器状态和软引用规则的对象。
+			4.WEAK ： 弱引用:更积极地移除基于垃圾收集器状态和弱引用规则的对象。
+ 		flushInterval:缓存刷新间隔
+ 			默认不清空  毫秒单位
+ 		readOnly:是否只读
+ 			true：只读 直接从缓存中取
+ 			false:利用反序列话clone一条数据
+ 		size:存放元素的大小
+ -->
+ 	
+ 	<!-- 
+ 		select标签的userCache属性
+ 		useCache 针对二级缓存起作用 ，对一级缓存不起作用 
+ 			false 不使用二级缓存
+ 			true  使用二级缓存
+ 	-->
+ 	<select id="getUserById" resultType="com.mybatis.demo.entity.User" >
+ 			select * from user where id =#{id}
+ 	</select>
+ 	
+ 	<!-- 
+ 		select 标签 flushCache 默认为false
+ 		insert delete update 
+ 			标签 默认flushCache="true" 
+ 			将清除 一级、二级缓存   
+ 	-->
+ 	 <insert id="addUser" parameterType="com.mybatis.demo.entity.User" 
+ 	 	useGeneratedKeys="true"	keyProperty="id">
+	 	insert into user(name,tel_num) values(#{name},#{telNum})
+	 </insert>
+
+	 <!-- parameterType 类型可省略 -->
+	 <update id="updateUser">
+	 	update user set name=#{name},tel_num=#{telNum} where id=#{id}
+	 </update>
+	 
+	 <delete id="deleteUserById">
+	 	delete from user where id = #{id}
+	 </delete>
+	 
+ </mapper>

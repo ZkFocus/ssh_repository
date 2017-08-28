@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="lib/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="lib/log4j.jar"/>
+	<classpathentry kind="lib" path="lib/mybatis-3.4.4.jar" sourcepath="D:/java/opensource/mybatis/mybatis-3.4.4/mybatis-3-mybatis-3.4.4"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.7-bin.jar"/>
+	<classpathentry kind="lib" path="lib/ehcache-core-2.6.8.jar" sourcepath="C:/Users/mbdn/.m2/repository/net/sf/ehcache/ehcache-core/2.6.8/ehcache-core-2.6.8-sources.jar"/>
+	<classpathentry kind="lib" path="lib/mybatis-ehcache-1.0.3.jar" sourcepath="C:/Users/mbdn/.m2/repository/org/mybatis/caches/mybatis-ehcache/1.0.3/mybatis-ehcache-1.0.3-sources.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-log4j12-1.7.25.jar"/>
+	<classpathentry kind="src" path="conf"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
