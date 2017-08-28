@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zh.dao.UserMapper">
+<!-- if -->
+<select id="getUserif" resultType="com.zh.model.User">
+<!-- select * from user where id = #{id} and uname like '%${uname}%' -->
+	
+	select * from user where id = #{id}
+		<if test="uname!=null and uname!=''">
+			and uname like #{uname}
+		</if>
+</select>
+
+<!-- ifs -->
+<select id="getUserList" parameterType="com.zh.dao.UserQueryVo" resultType="com.zh.dao.UserCustom">
+	<!-- select * from user 
+	where user.id = #{userCustom.id} 
+	and user.uname like '%${userCustom.uname}%' -->
+	<!-- where 可以自动的去掉条件中的第一个and 第一and可不加 -->
+	select * from user
+	<where>
+	<!-- 	<include refid="usersql"></include> -->
+		<include  refid="users"></include>
+	</where>
+</select>
+<sql id="users">
+	<if test="userCustom!=null">
+			<if test="userCustom.id!=null and userCustom.id!=''">
+				and user.id = #{userCustom.id} 
+			</if>
+			<if test="userCustom.uname!=null and userCustom.uname!=''">
+				and user.uname like '%${userCustom.uname}%'
+			</if>
+		</if>
+</sql>
+<!-- <sql id="usersql">
+	<if test="userCustom!=null">
+			<if test="userCustom.id!=null and userCustom.id!=''">
+				and user.id = #{userCustom.id} 
+			</if>
+			<if test="userCustom.uname!=null and userCustom.uname!=''">
+				and user.uname like '%${userCustom.uname}%'
+			</if>
+	</if>
+</sql> -->
+<!-- choose, when, otherwise -->
+<select id="getUserCWO" resultType="com.zh.model.User">
+	SELECT * FROM user 
+	<choose>
+	<when test="id != null">
+		where id=#{id}
+	</when>
+	<when test="uname != null and uname != '' ">
+		where uname=#{uname}
+	</when>
+	<otherwise>
+		where upass=#{upass}
+	</otherwise>
+</choose>
+</select>
+<!-- trim  注意第一个and可以不写，鄙人已经亲测-->
+<!-- 与<where>类似  prefix 前缀， suffix 后缀-->
+<select id="getUserTrim" resultType="com.zh.model.User">
+	select * from user
+        <trim prefix="where" prefixOverrides="and|or">  
+            <if test="id!=null">  
+               and id = #{id}  
+            </if>  
+            <if test="uname!=null">  
+                AND uname=#{uname}  
+            </if>  
+            <if test="upass!=null">  
+                AND upass like #{upass}  
+            </if>  
+        </trim>  
+</select>
+<!-- set -->
+<update id="updateUserBySet">  
+        update user 
+        <set>  
+            <if test="uname!=null and uname!=''">  
+                uname=#{uname},  
+            </if>  
+            <if test="upass!=null and upass!=''">  
+                upass=#{upass},  
+            </if>  
+        </set>  
+        		where id=#{id}  
+</update>
+<!-- set和trim配合使用-->
+<update id="updateUserBySetAndTrim">  
+        update user
+        <trim prefix="SET" suffixOverrides=",">  
+            <if test="uname!=null and uname!=''">  
+                uname=#{uname},  
+            </if>  
+            <if test="upass!=null and upass!=''">  
+                upass=#{upass},  
+            </if>    
+        </trim>  
+        		where id=#{id}  
+    </update>
+    
+<!--  <resultMap type="com.zh.model.User" id="userResult">  
+        <id property="id" column="id" />  
+        <result property="uname" column="uname" />  
+        <result property="upass" column="upass" />  
+    </resultMap>  -->
+ <!--  foreach  参数为list --> 
+ <!-- item ： 表示在迭代过程中每一个元素的别名
+　　　　open ：前缀
+　　　　close ：后缀
+　　　　separator：连接或者分隔符，表示迭代时每个元素之间以什么分隔
+	  index  : 取下标 在这里没有用
+ -->
+ <!-- foreach一般用于批量   删除  添加   中   -->
+<select id="selectUserByForEachList" parameterType="com.zh.dao.UserQueryVo" resultType="com.zh.dao.UserCustom">  
+        select * from user
+         <if test="lid!=null"> 
+         	<!-- where id in 可以放在open里面-->
+            <foreach item="id" collection="lid" open="where id in (" close=")" separator=",">  
+              #{id}  
+            </foreach>  
+        </if> 
+</select>  
+<!--  bind 模糊查询 -->
+<!--1. value="'%'+_parameter.getUname() +'%'" -->
+<!--2. value="'%'+uname+'%'"  -->
+<!-- 1和2这两种写法都行 第一种写法中的getUname()是实体类uname的get方法 -->
+<select id="findUserByUname" resultType="com.zh.model.User">
+        select * from user
+        <bind name="uname" value="'%'+_parameter.getUname() +'%'" />
+        <where>
+            <if test="uname != null and uname != ''">
+                uname like #{uname}
+            </if>
+        </where>
+</select>
+</mapper>
