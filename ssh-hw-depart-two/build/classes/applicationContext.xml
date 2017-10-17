@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+
+<context:property-placeholder location="classpath:db.properties"/>
+<!-- 采用C3P0数据源 连接池初始化创建5个链接供我们使用 降低了与数据库链接的频率 直接使用创建好的链接  -->
+<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+	<property name="user" value="${jdbc.user}"></property>
+	<property name="password" value="${jdbc.password}"></property>
+	<property name="driverClass" value="${jdbc.driver}"></property>
+	<property name="jdbcUrl" value="${jdbc.url}"></property>
+	
+	<property name="initialPoolSize" value="${jdbc.initPoolSize}"></property>
+	<property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
+</bean>
+<!-- 采用spring提供的LocalSessionFactoryBean来创建hibernate的sessionfactory -->
+<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	<!-- 注入hibernate的配置文件 -->
+	<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
+	<!-- 注入DataSource -->
+	<property name="dataSource" ref="dataSource"></property>
+	<!-- 注入实体类的映射文件 -->
+	<property name="mappingLocations" value="classpath:com/ssh/demo/entity/*.hbm.xml"></property>
+</bean>
+
+<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	<property name="sessionFactory" ref="sessionFactory"></property>
+</bean>
+
+<tx:advice id="txAdvice" transaction-manager="transactionManager">
+	<tx:attributes>
+		<tx:method name="get*" read-only="true"/>
+		<tx:method name="*"/>
+	</tx:attributes>
+</tx:advice>
+
+<aop:config>
+	<aop:pointcut expression="execution(* com.ssh.demo.service.*.*(..) )" id="txPointCut"/>
+	<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+</aop:config>
+
+</beans>
