@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-24 17:53:39 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.ssh.demo.entity.Component" table="COMPONENT">
+        <id name="componentId" type="java.lang.Integer">
+            <column name="COMPONENTID" />
+            <generator class="native" />
+        </id>
+        <property name="componentName" type="java.lang.String">
+            <column name="COMPONENTNAME" />
+        </property>
+        <property name="capacity" type="java.lang.String">
+            <column name="CAPACITY" />
+        </property>
+        <property name="price" type="double">
+            <column name="PRICE" />
+        </property>
+        <many-to-one name="componentType" class="com.ssh.demo.entity.ComponentType">
+        	<column name="TYPEID"></column>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

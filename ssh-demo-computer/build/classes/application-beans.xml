@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<bean id="componentTypeRepository" class="com.ssh.demo.repository.ComponentTypeRepository">
+	<property name="sessionFactory" ref="sessionFactory"></property>
+</bean>
+<bean id="componentRepository" class="com.ssh.demo.repository.ComponentRepository">
+	<property name="sessionFactory" ref="sessionFactory"></property>
+	
+	<property name="componentTypeRepository" ref="componentTypeRepository"></property>
+</bean>
+<bean id="computerRepository" class="com.ssh.demo.repository.ComputerRepository">
+	<property name="sessionFactory" ref="sessionFactory"></property>
+</bean>
+<bean id="componentService" class="com.ssh.demo.service.ComponentService">
+	<property name="componentRepository" ref="componentRepository"></property>
+</bean>
+<bean id="computerService" class="com.ssh.demo.service.ComputerService">
+	<property name="computerRepository" ref="computerRepository"></property>
+</bean>
+<bean id="componentAction" class="com.ssh.demo.action.ComponentAction" scope="prototype">
+	<property name="componentService" ref="componentService"></property>
+</bean>
+
+<bean id="computerAction" class="com.ssh.demo.action.ComputerAction" scope="prototype">
+	<property name="componentService" ref="componentService"></property>
+	<property name="computerService" ref="computerService"></property>
+</bean>
+</beans>

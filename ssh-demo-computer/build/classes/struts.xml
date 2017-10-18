@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true" />
+    <package name="default" namespace="/" extends="struts-default">
+    	
+    	
+        <default-interceptor-ref name="paramsPrepareParamsStack"></default-interceptor-ref>
+        
+        <action name="component-*" class="componentAction" method="{1}">
+        	<result name="list">/WEB-INF/views/component-list.jsp</result>	
+		   <result name="input">/WEB-INF/views/component-input.jsp</result>
+		    <result name="success" type="redirect">/component-list</result>
+        </action>
+        
+        <action name="computer-*" class="computerAction" method="{1}">
+        	<result name="list">/WEB-INF/views/computer-list.jsp</result>	
+		   <result name="input">/WEB-INF/views/computer-input.jsp</result>
+		    <result name="success" type="redirect">/computer-list</result>
+        </action>
+        
+    </package>
+    
+    <package name="web" namespace="/web" extends="json-default">
+    	<action name="component-verify" class="componentAction" method="verify">
+    		<result type="json"></result>
+    	</action>
+    </package>
+    
+</struts>

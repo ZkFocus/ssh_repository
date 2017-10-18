@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-24 17:53:39 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.ssh.demo.entity.ComponentType" table="COMPONENTTYPE">
+        <id name="typeId" type="java.lang.Integer">
+            <column name="typeId" />
+            <generator class="native" />
+        </id>
+        <property name="typeName" type="java.lang.String">
+            <column name="TYPENAME" />
+        </property>
+    </class>
+</hibernate-mapping>

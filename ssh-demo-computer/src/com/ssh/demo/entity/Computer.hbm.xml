@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-24 17:53:39 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="com.ssh.demo.entity.Computer" table="COMPUTER">
+        <id name="computerId" type="java.lang.Integer">
+            <column name="COMPUTERID" />
+            <generator class="native" />
+        </id>
+        <property name="computerName" type="java.lang.String">
+            <column name="COMPUTERNAME" />
+        </property>
+        <property name="memory" type="java.lang.String">
+            <column name="MEMORY" />
+        </property>
+        <property name="cpu" type="java.lang.String">
+            <column name="CPU" />
+        </property>
+        <property name="videocard" type="java.lang.String">
+            <column name="VIDEOCARD" />
+        </property>
+        <property name="display" type="java.lang.String">
+            <column name="DISPLAY" />
+        </property>
+        <property name="hdd" type="java.lang.String">
+            <column name="HDD" />
+        </property>
+        <property name="price" type="double">
+            <column name="PRICE" />
+        </property>
+    </class>
+</hibernate-mapping>
