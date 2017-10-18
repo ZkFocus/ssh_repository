@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="scripts/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+/*数量和价格联动*/
+$(function(){
+    var $span = $("div.pro_price span");
+	var price = $span.text();	
+	$("#num_sort").change(function(){
+	    var num = $(this).val();
+		var amount = num * price;
+		$span.text( amount );
+	});
+})
+</script>
+</head>
+<body>
+
+	<div class="pro_num">
+	数量： <select id="num_sort" style="width: 40px;">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+		</select>
+	</div>
+	<div class="pro_price">
+		总计：<span>200</span>元
+	</div>
+
+</body>
+</html>
